@@ -128,7 +128,7 @@ const CreateCourses = () => {
                 <input
                   type="file"
                   id="image"
-                  className="hidden"
+                  className="hidden"   
                   ref={ref}
                   placeholder=""
                   name={name}
