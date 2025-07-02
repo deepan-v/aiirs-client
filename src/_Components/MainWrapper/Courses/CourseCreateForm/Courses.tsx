@@ -111,7 +111,7 @@ const CreateCourses = () => {
             {errors["color"] && errors["color"]?.message}
           </p>
         </div>
-        <p className="text-sm w-96 font-medium">Note: Please select the color the you want, otherwise it would be in random color ! </p>
+        <p className="text-sm w-96 font-medium">Note: Please select the color that you want, otherwise it would be in random color ! </p>
       </div>
 
       {!imagePreview ? (
