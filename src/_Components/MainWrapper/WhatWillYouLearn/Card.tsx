@@ -10,18 +10,18 @@ import { PiSpinnerBold } from "react-icons/pi";
 type FeatureCardProps = {
   icon: keyof typeof FaIcons;
   title: string;
+  _id: string;
   description: string;
 };
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
   icon,
   title,
+  _id,
   description,
 }) => {
-  const params = useSearchParams();
-  const id = params.get("course") || "";
-
-  let {isPending, mutateAsync} = useLearnDelete(id);
+  console.log(_id);
+  let { isPending, mutateAsync } = useLearnDelete(_id);
   const IconComponent = FaIcons[icon] || FaIcons.FaQuestion;
 
   let handleDeleteFunc = async () => {

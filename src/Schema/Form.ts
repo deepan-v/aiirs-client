@@ -24,7 +24,6 @@ export const BannerSchema = z.object({
   to_date: z.string().min(1, { message: "Please Select The Date" }),
   course_name: z.string().min(1, { message: "Required" }),
   price: z.string().min(1, { message: "Required" }),
-  student_enrolled: z.string().min(1, { message: "Required" }),
   venue: z.string().min(1, { message: "Required" }),
   program_timing: z.string().min(1, { message: "Required" }),
   selectImage: z

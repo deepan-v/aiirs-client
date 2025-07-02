@@ -29,6 +29,7 @@ type formType = {
   from_date: Date | any;
   to_date: Date | any;
   venue: string;
+  price: string;
   course_name: string;
   program_timing: string;
   selectImage: string;
@@ -52,7 +53,6 @@ const Banner = () => {
   } = useForm({
     resolver: zodResolver(BannerSchema),
   });
-
   useEffect(() => {
     return () => {
       if (imagePreview) URL.revokeObjectURL(imagePreview);
@@ -67,6 +67,7 @@ const Banner = () => {
     formData.append("from_date", data.from_date);
     formData.append("to_date", data.to_date);
     formData.append("id", id);
+    formData.append("price", data.price);
     formData.append("venue", data.venue);
     formData.append("course_name", data.course_name);
     formData.append("program_timing", data.program_timing);
@@ -157,17 +158,17 @@ const Banner = () => {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-4">
         <Inputs
-          label="Student Enrolled"
-          name="student_enrolled"
+          label="Course Name"
+          name="course_name"
           type="text"
           errors={errors}
           register={register}
         />
         <Inputs
-          label="Course Name"
-          name="course_name"
+          label="Price"
+          name="price"
           type="text"
           errors={errors}
           register={register}
