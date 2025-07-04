@@ -14,6 +14,7 @@ type Props = {
   coursePrice1: string;
   coursePrice2: string;
   discountPrice: string;
+  _id:string
   razorLink: string;
   publicId1: string;
   publicId2: string;
@@ -27,12 +28,12 @@ const CourseHighlightCard = ({
   coursePrice1,
   coursePrice2,
   discountPrice,
+  _id,
   razorLink,
   courseImage2,
 }: Props) => {
-  const params = useSearchParams();
-  const id = params.get("course") || "";
-  let { isPending, mutateAsync } = useMultiCourseDelete(id);
+  
+  let { isPending, mutateAsync } = useMultiCourseDelete(_id);
 
   let handleDeleteFunc = async () => {
     await mutateAsync();

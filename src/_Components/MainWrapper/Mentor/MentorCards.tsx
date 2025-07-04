@@ -9,8 +9,9 @@ import { useSearchParams } from "next/navigation";
 type MentorProps = {
   name: string;
   profession: string;
-  department: string;
   university: string;
+  department: string;
+  _id: string;
   location: string;
   image: string;
 };
@@ -21,14 +22,13 @@ const MentorCard = ({
   department,
   university,
   location,
+  _id,
   image,
 }: MentorProps) => {
 
-  const params = useSearchParams();
-  
-    const id = params.get("course") || "";
 
-  let { isPending ,mutateAsync } = useMentorDelete(id);
+
+  let { isPending, mutateAsync } = useMentorDelete(_id);
 
   let handleDeleteFunc = async () => {
     await mutateAsync();

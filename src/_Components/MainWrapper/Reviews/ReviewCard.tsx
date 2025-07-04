@@ -7,14 +7,15 @@ import { FaTrash } from "react-icons/fa";
 import { PiSpinnerBold } from "react-icons/pi";
 
 type Props = {
-  image: string; // Array of image URLs
+  image: string;
+   _id:string // Array of image URLs
   // You can pass publicId if you're using Cloudinary
 };
 
-const ReviewCard = ({ image }: Props) => {
+const ReviewCard = ({ image, _id }: Props) => {
   const params = useSearchParams();
   const id = params.get("course") || "";
-  let { isPending, mutateAsync } = useReviewDelete(id);
+  let { isPending, mutateAsync } = useReviewDelete(_id);
 
   let handleDeleteFunc = async () => {
     await mutateAsync();
