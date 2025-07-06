@@ -7,6 +7,7 @@ import { useCards } from "@/Hooks/useCards";
 
 const CourseMain = () => {
   let { data, isPending } = useCards();
+  console.log(data.length);
   return (
     <div>
       <h1 className="my-10 font-medium text-3xl text-center ">Form for Create Course </h1>

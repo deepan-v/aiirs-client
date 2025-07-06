@@ -1,23 +1,26 @@
 "use client";
 
 import { useCard } from "@/Hooks/useAuth";
+import { useCards } from "@/Hooks/useCards";
 import Inputs from "@/libs/Inputs";
 import { cardSchema, createCardSchema } from "@/Schema/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { IoCloudUpload } from "react-icons/io5";
 import { PiSpinnerBold } from "react-icons/pi";
 
 const CreateCourses = () => {
+  const { data:cardsData } = useCards();
   const [imagePreview, setImagePreview] = useState<string | null>("");
   const {
     register,
     handleSubmit,
     reset,
     control,
-   getValues,
+    getValues,
     setValue,
     watch,
     formState: { errors },
@@ -33,7 +36,13 @@ const CreateCourses = () => {
     <form
       onSubmit={handleSubmit(async (data) => {
         let formData = new FormData();
-        formData.append("selectImage", data.selectImage);
+        if (cardsData.length > 8){
+          toast.error(
+            "Kindly contact a developer to increase your funnel limit."
+          );
+          return
+        }
+           formData.append("selectImage", data.selectImage);
         formData.append("course_name", data.course_name);
         formData.append("student_enrolled", data.student_enrolled);
         formData.append("price", data.price);
@@ -111,7 +120,10 @@ const CreateCourses = () => {
             {errors["color"] && errors["color"]?.message}
           </p>
         </div>
-        <p className="text-sm w-96 font-medium">Note: Please select the color that you want, otherwise it would be in random color ! </p>
+        <p className="text-sm w-96 font-medium">
+          Note: Please select the color that you want, otherwise it would be in
+          random color !{" "}
+        </p>
       </div>
 
       {!imagePreview ? (
@@ -128,7 +140,7 @@ const CreateCourses = () => {
                 <input
                   type="file"
                   id="image"
-                  className="hidden"   
+                  className="hidden"
                   ref={ref}
                   placeholder=""
                   name={name}
