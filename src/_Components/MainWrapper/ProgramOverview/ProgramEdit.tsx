@@ -55,7 +55,7 @@ const ProgramOverviewEdit = () => {
   };
 
   let handleDeleteFunc = async () => {
-    await mutateAsyncDelete(id);
+    await mutateAsyncDelete(data?._id);
   };
 
   useEffect(() => {
